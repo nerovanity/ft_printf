@@ -3,22 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nero <nero@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:43:01 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/19 16:50:10 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/20 21:50:20 by nero             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	check(char c)
+static int	check(char c)
 {
-	return (c == 'c' || c == 's'
-		|| c == 'd' || c == '%' || c == 'u');
+	char flags[9];
+	int i;
+	
+	flags = "csduxXp%";
+	i = 0;
+	while (flags[i])
+	{
+		if (flags[i] == c)
+			return (1);
+		i++;	
+	}
+	return (0);
 }
 
-int	print_format(char spicifier, va_list ap)
+static int	print_format(char spicifier, va_list ap)
 {
 	int	count;
 
@@ -38,7 +48,14 @@ int	print_format(char spicifier, va_list ap)
 	return (count);
 }
 
-int	print_it(const char *str, va_list ap)
+static int hadling_flags(const char *str, va_list ap)
+{
+	int i;
+
+	i = 0;
+}
+
+static int	print_it(const char *str, va_list ap)
 {
 	int	count;
 	int	i;
