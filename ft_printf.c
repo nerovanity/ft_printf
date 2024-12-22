@@ -6,7 +6,7 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:43:01 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/22 16:05:08 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/22 17:41:44 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check(char c)
 	char	*flags;
 	int		i;
 
-	flags = "csduxXp%";
+	flags = "csduxiXp%";
 	i = 0;
 	while (flags[i])
 	{
@@ -48,27 +48,6 @@ static int	print_format(char spicifier, va_list ap)
 	return (count);
 }
 
-static int	handle_flags(int *i, const char *str, va_list ap)
-{
-	int	count;
-
-	count = 0;
-	(*i)++;
-	while (str[*i] && (str[*i] == ' ' || str[*i] == '#' || str[*i] == '+'))
-		(*i)++;
-    if (str[*i] && check(str[*i]))
-        count += print_format(str[*i], ap);
-    else if (str[*i])
-	{
-        count += ft_putchar('%');
-		count += ft_putchar(str[*i - 1]);
-        count += ft_putchar(str[*i]);
-	}
-    else
-        count += ft_putchar('%');
-    return count;
-}
-
 static int	print_it(const char *str, va_list ap)
 {
 	int	count;
@@ -80,7 +59,10 @@ static int	print_it(const char *str, va_list ap)
 	{
 		if (str[i] == '%')
 		{
-			count += handle_flags(&i, str, ap);
+			if (check(str[i + 1]))
+				count += print_format(str[++i], ap);
+			else
+				count += ft_putchar(str[i]);
 		}
 		else
 			count += ft_putchar(str[i]);
