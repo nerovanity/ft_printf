@@ -6,11 +6,11 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:43:01 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/22 17:41:44 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/22 18:41:09 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 static int	check(char c)
 {
@@ -41,6 +41,12 @@ static int	print_format(char spicifier, va_list ap)
 		count += ft_putnbr(va_arg(ap, int));
 	else if (spicifier == 'u')
 		count += ft_putunbr(va_arg(ap, unsigned int));
+	else if (spicifier == 'x')
+		count += print_lhex(va_arg(ap, unsigned int));
+	else if (spicifier == 'X')
+		count += print_uhex(va_arg(ap, unsigned int));
+	else if (spicifier == 'p')
+		count += print_mem(va_arg(ap, size_t));
 	else if (spicifier == '%')
 		count += ft_putchar('%');
 	else
@@ -62,7 +68,8 @@ static int	print_it(const char *str, va_list ap)
 			if (check(str[i + 1]))
 				count += print_format(str[++i], ap);
 			else
-				count += ft_putchar(str[i]);
+				if (str[i + 1])
+					count += ft_putchar(str[i]);
 		}
 		else
 			count += ft_putchar(str[i]);

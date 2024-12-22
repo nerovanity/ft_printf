@@ -1,4 +1,16 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/22 18:41:17 by ihamani           #+#    #+#             */
+/*   Updated: 2024/12/22 18:41:23 by ihamani          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libftprintf.h"
 
 int ft_putchar(char c)
 {
@@ -53,7 +65,6 @@ int ft_putnbr(int nbr)
     return (count);
 }
 
-
 unsigned int ft_putunbr(unsigned int nbr)
 {
 	char			arr_nums[10];
@@ -74,4 +85,14 @@ unsigned int ft_putunbr(unsigned int nbr)
 	while (i > 0)
 		count += (ft_putchar(arr_nums[--i]));
     return (count);
+}
+
+int print_lhex(size_t t)
+{
+    int count = 0;
+
+    if (t >= 16)
+        count += print_lhex(t / 16);
+    count += write(1, &"0123456789abcdef"[t % 16], 1);
+    return count;
 }
