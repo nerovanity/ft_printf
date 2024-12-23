@@ -6,47 +6,45 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:41:17 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/23 10:38:49 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/23 11:09:54 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_putchar(char c)
+int	ft_putchar(char c)
 {
-    write(1, &c, 1);
-    return (1);
+	write(1, &c, 1);
+	return (1);
 }
 
-int ft_putstr(char *str)
+int	ft_putstr(char *str)
 {
-    int i;
-    int count;
+	int	i;
+	int	count;
 
-    if (str == NULL)
-        return ft_putstr("(null)");
-    i = 0;
-    count = 0;
-    while (str[i])
-    {
-        count += ft_putchar(str[i]);
-        i++;
-    }
-    return (count);
+	if (str == NULL)
+		return (ft_putstr("(null)"));
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		count += ft_putchar(str[i]);
+		i++;
+	}
+	return (count);
 }
 
-int ft_putnbr(int nbr)
+int	ft_putnbr(int nbr)
 {
 	unsigned int	n;
 	char			arr_nums[10];
 	int				i;
-    int             count;
+	int				count;
 
-    count = 0;
+	count = 0;
 	if (nbr == 0)
-    {
 		return (ft_putchar('0'));
-    }
 	if (nbr < 0)
 	{
 		n = -nbr;
@@ -62,20 +60,18 @@ int ft_putnbr(int nbr)
 	}
 	while (i > 0)
 		count += (ft_putchar(arr_nums[--i]));
-    return (count);
+	return (count);
 }
 
-unsigned int ft_putunbr(unsigned int nbr)
+unsigned int	ft_putunbr(unsigned int nbr)
 {
-	char			arr_nums[10];
-	int				i;
-    int             count;
+	char	arr_nums[10];
+	int		i;
+	int		count;
 
-    count = 0;
+	count = 0;
 	if (nbr == 0)
-    {
 		return (ft_putchar('0'));
-    }
 	i = 0;
 	while (nbr)
 	{
@@ -84,15 +80,16 @@ unsigned int ft_putunbr(unsigned int nbr)
 	}
 	while (i > 0)
 		count += (ft_putchar(arr_nums[--i]));
-    return (count);
+	return (count);
 }
 
-int print_lhex(size_t t)
+int	print_lhex(size_t t)
 {
-    int count = 0;
+	int	count;
 
-    if (t >= 16)
-        count += print_lhex(t / 16);
-    count += write(1, &"0123456789abcdef"[t % 16], 1);
-    return count;
+	count = 0;
+	if (t >= 16)
+		count += print_lhex(t / 16);
+	count += write(1, &"0123456789abcdef"[t % 16], 1);
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:43:01 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/23 10:38:27 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/23 11:03:56 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	print_format(char spicifier, va_list ap)
 	else if (spicifier == 'X')
 		count += print_uhex(va_arg(ap, unsigned int));
 	else if (spicifier == 'p')
-		count += print_mem(va_arg(ap, size_t));
+		count += ft_print_mem(va_arg(ap, size_t));
 	else if (spicifier == '%')
 		count += ft_putchar('%');
 	else
@@ -81,10 +81,10 @@ static int	print_it(const char *str, va_list ap)
 int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	int	count;
+	int		count;
 
 	va_start(ap, str);
 	count = print_it(str, ap);
 	va_end(ap);
-	return (count); 
+	return (count);
 }

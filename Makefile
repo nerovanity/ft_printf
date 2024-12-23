@@ -10,7 +10,7 @@ all: $(NAME)
  
 $(NAME): $(OBJECTS)
 
-%.o: %.c libftprintf.h
+%.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 	ar rcs $(NAME) $@
 
