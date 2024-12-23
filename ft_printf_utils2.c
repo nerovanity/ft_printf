@@ -6,11 +6,11 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:41:26 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/22 18:41:30 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/23 10:38:43 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int print_uhex(size_t t)
 {
@@ -27,6 +27,8 @@ int	print_mem(size_t t)
 	int count;
 
 	count = 0;
+	if (!t)
+		return (ft_putstr("(nil)"));
 	count += ft_putstr("0x");
 	count += print_lhex(t);
 	return (count);

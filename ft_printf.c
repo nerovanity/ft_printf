@@ -6,11 +6,11 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:43:01 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/22 18:41:09 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/23 10:38:27 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	check(char c)
 {
@@ -81,7 +81,7 @@ static int	print_it(const char *str, va_list ap)
 int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	int		count;
+	int	count;
 
 	va_start(ap, str);
 	count = print_it(str, ap);

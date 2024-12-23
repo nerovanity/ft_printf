@@ -1,5 +1,5 @@
-# ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+# ifndef FT_PRINTF_FT
+# define FT_PRINTF_FT
 
 # include <unistd.h>
 # include <stdarg.h>
