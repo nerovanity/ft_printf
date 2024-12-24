@@ -6,7 +6,7 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:41:26 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/23 12:22:36 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/24 10:59:24 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,14 @@ int	ft_print_mem(size_t t)
 	count += ft_putstr("0x");
 	count += print_lhex(t);
 	return (count);
+}
+
+size_t	ft_strlen(char const *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i++);
 }

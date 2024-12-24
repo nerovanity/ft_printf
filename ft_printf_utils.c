@@ -6,7 +6,7 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:41:17 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/23 11:09:54 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/23 19:27:12 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_putnbr(int nbr)
 	return (count);
 }
 
-unsigned int	ft_putunbr(unsigned int nbr)
+int	ft_putunbr(unsigned int nbr)
 {
 	char	arr_nums[10];
 	int		i;
