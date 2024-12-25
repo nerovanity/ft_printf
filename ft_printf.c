@@ -6,7 +6,7 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:43:01 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/25 11:02:08 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/25 11:12:37 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,5 @@ int	ft_printf(const char *str, ...)
 	va_start(ap, str);
 	count = print_it(str, ap);
 	va_end(ap);
-	if (count == 0 && ft_strlen(str))
-		return (-1);
 	return (count);
 }
