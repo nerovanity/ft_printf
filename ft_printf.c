@@ -6,7 +6,7 @@
 /*   By: ihamani <ihamani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:43:01 by ihamani           #+#    #+#             */
-/*   Updated: 2024/12/24 13:52:04 by ihamani          ###   ########.fr       */
+/*   Updated: 2024/12/25 11:02:08 by ihamani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check(char c)
 	char	*flags;
 	int		i;
 
-	flags = "csduxiXp";
+	flags = "csduxiXp%";
 	i = 0;
 	while (flags[i])
 	{
@@ -28,48 +28,36 @@ static int	check(char c)
 	return (0);
 }
 
-static int	print_format(char spicifier, va_list ap)
+static int	print_format(char const *str, int *i, va_list ap)
 {
 	int	count;
 
 	count = 0;
-	if (spicifier == 'c')
+	(*i)++;
+	if (str[*i] == 'c')
 		count += ft_putchar(va_arg(ap, int));
-	else if (spicifier == 's')
+	else if (str[*i] == 's')
 		count += ft_putstr(va_arg(ap, char *));
-	else if (spicifier == 'd' || spicifier == 'i')
+	else if (str[*i] == 'd' || str[*i] == 'i')
 		count += ft_putnbr(va_arg(ap, int));
-	else if (spicifier == 'u')
+	else if (str[*i] == 'u')
 		count += ft_putunbr(va_arg(ap, unsigned int));
-	else if (spicifier == 'x')
+	else if (str[*i] == 'x')
 		count += print_lhex(va_arg(ap, unsigned int));
-	else if (spicifier == 'X')
+	else if (str[*i] == 'X')
 		count += print_uhex(va_arg(ap, unsigned int));
-	else if (spicifier == 'p')
+	else if (str[*i] == 'p')
 		count += ft_print_mem(va_arg(ap, size_t));
+	else if (str[*i] == '%')
+		count += ft_putchar('%');
+	(*i)++;
 	return (count);
-}
-
-static int	handle_percent(const char *str, int *i)
-{
-	int	percent_count;
-
-	percent_count = 0;
-	while (str[*i] == '%')
-	{
-		percent_count++;
-		(*i)++;
-	}
-	if (percent_count % 2 != 0)
-		return (0);
-	return (percent_count / 2);
 }
 
 static int	print_it(const char *str, va_list ap)
 {
 	int	count;
 	int	i;
-	int pairs;
 
 	count = 0;
 	i = 0;
@@ -77,15 +65,15 @@ static int	print_it(const char *str, va_list ap)
 	{
 		if (str[i] == '%')
 		{
-            if (check(str[i + 1]))
-                count += print_format(str[++i], ap);clean
-            pairs = handle_percent(str, &i);
-            while (pairs-- > 0)
-                count += ft_putchar('%');
+			if (check(str[i + 1]))
+				count += print_format(str, &i, ap);
+			else if (!str[i + 1])
+				return (-1);
+			else
+				count += ft_putchar(str[i++]);
 		}
 		else
-			count += ft_putchar(str[i]);
-		i++;
+			count += ft_putchar(str[i++]);
 	}
 	return (count);
 }

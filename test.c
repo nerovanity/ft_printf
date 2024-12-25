@@ -114,5 +114,9 @@ int main(void) {
     ret_std = printf("Invalid Format: %r\n");
     printf("Return values: ft_printf = %d, printf = %d\n\n", ret_ft, ret_std);
 
+	ret_ft = ft_printf("%%%%%");
+    ret_std = printf("%%%%%");
+    printf("Return values: ft_printf = %d, printf = %d\n\n", ret_ft, ret_std);
+
     return 0;
 }
